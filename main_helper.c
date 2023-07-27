@@ -14,12 +14,12 @@ void handle_opcode(char *opcode, stack_t **stack, int line_number)
 			fprintf(stderr, "L%d: usage: push integer\n", line_number);
 			exit(EXIT_FAILURE);
 		}
-		n = atoi(opcode);
-		if (!n && strcmp(opcode, "0") != 0)
+		if (check_int(opcode) == 1)
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", line_number);
 			exit(EXIT_FAILURE);
 		}
+		n = atoi(opcode);
 		PUSH_VALUE = n;
 		push(stack, line_number);
 	}
@@ -30,4 +30,25 @@ void handle_opcode(char *opcode, stack_t **stack, int line_number)
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
 		exit(EXIT_FAILURE);
 	}
+}
+/**
+ * check_int - check if a string is consist of integers only
+ * @str: the string
+ * Return: return 0 or 1
+ */
+int check_int(char *str)
+{
+	int i = 0;
+
+	if (str[0] == '-')
+		i++;
+	while (str[i] != '\0')
+	{
+		if (str[i] < '0' || str[i] > '9')
+		{
+			return (1);
+		}
+		i++;
+	}
+	return (0);
 }

@@ -45,5 +45,6 @@ void push(stack_t **stack, unsigned int line_number);
 
 /**main**/
 void handle_opcode(char *opcode, stack_t **stack, int line_number);
+int check_int(char *str);
 
 #endif
