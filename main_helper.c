@@ -15,6 +15,11 @@ void handle_opcode(char *opcode, stack_t **stack, int line_number)
 			exit(EXIT_FAILURE);
 		}
 		n = atoi(opcode);
+		if (!n && strcmp(opcode, "0") != 0)
+		{
+			fprintf(stderr, "L%d: usage: push integer\n", line_number);
+			exit(EXIT_FAILURE);
+		}
 		PUSH_VALUE = n;
 		push(stack, line_number);
 	}
