@@ -1,4 +1,5 @@
 #include "monty.h"
+
 /**
  * push - add node at the beg of stack
  * @stack: head of the stack
