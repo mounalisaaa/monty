@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define uint unsigned int
+
 extern int PUSH_VALUE;
 
 /**
@@ -39,10 +41,15 @@ typedef struct instruction_s
 
 void pall(stack_t **stack, unsigned int line_number);
 void push(stack_t **stack, unsigned int line_number);
+void _nop(stack_t **stack, unsigned int line);
+void _swap(stack_t **stack, unsigned int line);
+void _add(stack_t **stack, uint line);
+void pop_stack(stack_t **stack, uint line);
 
 /**main**/
 void handle_opcode(char *opcode, stack_t **stack, int line_number);
 int check_int(char *str);
 void pushing(char *opcode, stack_t **stack, int line_number);
+void free_stack(stack_t *top);
 
 #endif

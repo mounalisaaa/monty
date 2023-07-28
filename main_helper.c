@@ -12,6 +12,10 @@ void handle_opcode(char *opcode, stack_t **stack, int line_number)
 		pushing(opcode, stack, line_number);
 	else if (strcmp(opcode, "pall") == 0)
 		pall(stack, line_number);
+	else if (strcmp(opcode, "nop") == 0)
+		_nop(stack, line_number);
+	else if (strcmp(opcode, "swap") == 0)
+		_swap(stack, line_number);
 	else
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
@@ -29,12 +33,7 @@ void pushing(char *opcode, stack_t **stack, int line_number)
 	int n;
 
 	opcode = strtok(NULL, " \t\n");
-	if (!opcode)
-	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
-	}
-	if (check_int(opcode) == 1)
+	if (!opcode || check_int(opcode) == 1)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
