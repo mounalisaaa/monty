@@ -32,5 +32,6 @@ int main(int argc, char **argv)
 			handle_opcode(opcode, &stack, line_number);
 	}
 	fclose(file);
+	free_stack(stack);
 	return (0);
 }
