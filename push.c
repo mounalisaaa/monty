@@ -81,14 +81,14 @@ void _swap(stack_t **stack, unsigned int line)
  */
 void _add(stack_t **stack, uint line)
 {
-	stack_t *tmp;
+	int sum;
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
 		fprintf(stderr, "L%d: can't add, stack too short\n", line);
 		exit(EXIT_FAILURE);
 	}
-	tmp = (*stack)->next;
-	tmp->n += (*stack)->n;
+	sum = (*stack)->n + (*stack)->next->n;
 	pop_stack(stack, line);
+	(*stack)->n = sum;
 }
