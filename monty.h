@@ -46,6 +46,7 @@ void _swap(stack_t **stack, unsigned int line);
 void _add(stack_t **stack, uint line);
 void pop_stack(stack_t **stack, uint line);
 void _pint(stack_t **stack, unsigned int line_num);
+void sub(stack_t **stack, uint line);
 
 /**main**/
 void handle_opcode(char *opcode, stack_t **stack, int line_number);
