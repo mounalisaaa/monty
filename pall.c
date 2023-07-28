@@ -51,3 +51,18 @@ void _pint(stack_t **stack, unsigned int line_num)
 	}
 	printf("%d\n", (*stack)->n);
 }
+/**
+ * is_comm - is comment
+ * @token: token
+ * @line_count: num of lines
+ * Return: integer
+ */
+int is_comm(char *token, int line_count)
+{
+	if (token == NULL || token[0] == '#')
+	{
+		line_count++;
+		return (1);
+	}
+	return (-1);
+}

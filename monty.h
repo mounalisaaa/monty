@@ -52,5 +52,6 @@ void handle_opcode(char *opcode, stack_t **stack, int line_number);
 int check_int(char *str);
 void pushing(char *opcode, stack_t **stack, int line_number);
 void free_stack(stack_t *top);
+int is_comm(char *token, int line_count);
 
 #endif

@@ -28,6 +28,8 @@ int main(int argc, char **argv)
 	{
 		line_number++;
 		opcode = strtok(buffer, " \t\n");
+		if (is_comm(opcode, line_number) == 1)
+			continue;
 		if (opcode)
 			handle_opcode(opcode, &stack, line_number);
 	}
