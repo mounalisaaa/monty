@@ -16,6 +16,8 @@ void handle_opcode(char *opcode, stack_t **stack, int line_number)
 		_nop(stack, line_number);
 	else if (strcmp(opcode, "swap") == 0)
 		_swap(stack, line_number);
+	else if (strcmp(opcode, "pop") == 0)
+		pop_stack(stack, line_number);
 	else
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
