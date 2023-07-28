@@ -6,14 +6,14 @@
  */
 void sub(stack_t **stack, uint line)
 {
-	int sum;
+	int sub;
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
-		fprintf(stderr, "L%d: can't add, stack too short\n", line);
+		fprintf(stderr, "L%d: can't sub, stack too short\n", line);
 		exit(EXIT_FAILURE);
 	}
-	sum = (*stack)->n - (*stack)->next->n;
+	sub = (*stack)->n - (*stack)->next->n;
 	pop_stack(stack, line);
-	(*stack)->n = sum;
+	(*stack)->n = sub;
 }
