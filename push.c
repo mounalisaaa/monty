@@ -1,6 +1,27 @@
 #include "monty.h"
 
 /**
+ * pushing - push helper
+ * @opcode: the opcode
+ * @stack: the head
+ * @line_number: number of lines
+ */
+void pushing(char *opcode, stack_t **stack, int line_number)
+{
+	int n;
+
+	opcode = strtok(NULL, " \t\n");
+	if (!opcode || check_int(opcode) == 1)
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	n = atoi(opcode);
+	PUSH_VALUE = n;
+	push(stack, line_number);
+}
+
+/**
  * push - add node at the beg of stack
  * @stack: head of the stack
  * @line_number: void
@@ -25,70 +46,4 @@ void push(stack_t **stack, unsigned int line_number)
 		(*stack)->prev = new;
 
 	*stack = new;
-}
-/**
- * free_stack - free
- * @top: head
- */
-void free_stack(stack_t *top)
-{
-	stack_t *temp;
-
-	if (top == NULL)
-		return;
-
-	while (top)
-	{
-		temp = top;
-		top = top->next;
-		free(temp);
-	}
-
-	free(top);
-}
-/**
- * _nop - no operqtion
- * @stack: head
- * @line: line
- */
-void _nop(stack_t **stack, unsigned int line)
-{
-	(void)stack;
-	(void)line;
-}
-/**
- * _swap - swaps the top two elements of the stack.
- * @stack: head
- * @line: line
- */
-void _swap(stack_t **stack, unsigned int line)
-{
-	int n;
-
-	if (*stack == NULL || (*stack)->next == NULL)
-	{
-		fprintf(stderr, "L%d: can't swap, stack too short\n", line);
-		exit(EXIT_FAILURE);
-	}
-	n = (*stack)->n;
-	(*stack)->n = (*stack)->next->n;
-	(*stack)->next->n = n;
-}
-/**
- * _add - add tzo nodes qnd pop the lqst
- * @stack: head
- * @line: line
- */
-void _add(stack_t **stack, uint line)
-{
-	int sum;
-
-	if (*stack == NULL || (*stack)->next == NULL)
-	{
-		fprintf(stderr, "L%d: can't add, stack too short\n", line);
-		exit(EXIT_FAILURE);
-	}
-	sum = (*stack)->n + (*stack)->next->n;
-	pop_stack(stack, line);
-	(*stack)->n = sum;
 }

@@ -30,26 +30,7 @@ void handle_opcode(char *opcode, stack_t **stack, int line_number)
 		exit(EXIT_FAILURE);
 	}
 }
-/**
- * pushing - push helper
- * @opcode: the opcode
- * @stack: the head
- * @line_number: number of lines
- */
-void pushing(char *opcode, stack_t **stack, int line_number)
-{
-	int n;
 
-	opcode = strtok(NULL, " \t\n");
-	if (!opcode || check_int(opcode) == 1)
-	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
-	}
-	n = atoi(opcode);
-	PUSH_VALUE = n;
-	push(stack, line_number);
-}
 /**
  * check_int - check if a string is consist of integers only
  * @str: the string
@@ -70,4 +51,39 @@ int check_int(char *str)
 		i++;
 	}
 	return (0);
+}
+/**
+ * is_comm - is comment
+ * @token: token
+ * @line_count: num of lines
+ * Return: integer
+ */
+int is_comm(char *token, int line_count)
+{
+	if (token == NULL || token[0] == '#')
+	{
+		line_count++;
+		return (1);
+	}
+	return (-1);
+}
+/**
+ * free_stack - free
+ * @top: head
+ */
+void free_stack(stack_t *top)
+{
+	stack_t *temp;
+
+	if (top == NULL)
+		return;
+
+	while (top)
+	{
+		temp = top;
+		top = top->next;
+		free(temp);
+	}
+
+	free(top);
 }
